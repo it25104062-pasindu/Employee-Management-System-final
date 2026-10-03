@@ -30,15 +30,35 @@ public class DepartmentService {
 
     public Department createDepartment(Department department) {
 
-        if (departmentRepository.existsByName(department.getName())) {
+        // Department name is required
+        if (department.getName() == null ||
+                department.getName().isBlank()) {
+
             throw new RuntimeException(
-                    "Department already exists: " + department.getName()
+                    "Department name is required"
             );
         }
 
+        String departmentName = department.getName().trim();
+
+        // Duplicate department name validation
+        if (departmentRepository.existsByName(departmentName)) {
+            throw new RuntimeException(
+                    "Department already exists: " + departmentName
+            );
+        }
+
+        department.setName(departmentName);
+
+        // Default status
         if (department.getStatus() == null ||
                 department.getStatus().isBlank()) {
+
             department.setStatus("Active");
+        } else {
+            department.setStatus(
+                    department.getStatus().trim()
+            );
         }
 
         return departmentRepository.save(department);
@@ -50,13 +70,50 @@ public class DepartmentService {
 
         Department existingDepartment = getDepartmentById(id);
 
-        existingDepartment.setName(updatedDepartment.getName());
+        // Department name is required
+        if (updatedDepartment.getName() == null ||
+                updatedDepartment.getName().isBlank()) {
+
+            throw new RuntimeException(
+                    "Department name is required"
+            );
+        }
+
+        String newDepartmentName =
+                updatedDepartment.getName().trim();
+
+        // Check duplicate name only if the name has changed
+        if (!existingDepartment.getName()
+                .equalsIgnoreCase(newDepartmentName)
+                && departmentRepository.existsByName(
+                newDepartmentName)) {
+
+            throw new RuntimeException(
+                    "Department already exists: "
+                            + newDepartmentName
+            );
+        }
+
+        existingDepartment.setName(
+                newDepartmentName
+        );
+
         existingDepartment.setDescription(
                 updatedDepartment.getDescription()
         );
-        existingDepartment.setStatus(
-                updatedDepartment.getStatus()
-        );
+
+        // Default status when blank
+        if (updatedDepartment.getStatus() == null ||
+                updatedDepartment.getStatus().isBlank()) {
+
+            existingDepartment.setStatus("Active");
+
+        } else {
+
+            existingDepartment.setStatus(
+                    updatedDepartment.getStatus().trim()
+            );
+        }
 
         return departmentRepository.save(existingDepartment);
     }
