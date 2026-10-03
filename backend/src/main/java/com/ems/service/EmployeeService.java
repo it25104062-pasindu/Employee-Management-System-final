@@ -55,6 +55,30 @@ public class EmployeeService {
             );
         }
 
+        // Phone number validation
+        if (employee.getPhone() != null &&
+                !employee.getPhone().isBlank()) {
+
+            if (!employee.getPhone().matches("\\d{10}")) {
+
+                throw new RuntimeException(
+                        "Phone number must contain exactly 10 digits"
+                );
+            }
+        }
+
+        // Date validation
+        if (employee.getJoinDate() != null &&
+                employee.getDateOfBirth() != null &&
+                employee.getJoinDate().isBefore(
+                        employee.getDateOfBirth()
+                )) {
+
+            throw new RuntimeException(
+                    "Join date cannot be before date of birth"
+            );
+        }
+
         // Duplicate employee code validation
         if (employeeRepository.existsByEmployeeCode(
                 employee.getEmployeeCode())) {
@@ -106,6 +130,30 @@ public class EmployeeService {
 
             throw new RuntimeException(
                     "Employee email is required"
+            );
+        }
+
+        // Phone number validation
+        if (updatedEmployee.getPhone() != null &&
+                !updatedEmployee.getPhone().isBlank()) {
+
+            if (!updatedEmployee.getPhone().matches("\\d{10}")) {
+
+                throw new RuntimeException(
+                        "Phone number must contain exactly 10 digits"
+                );
+            }
+        }
+
+        // Date validation
+        if (updatedEmployee.getJoinDate() != null &&
+                updatedEmployee.getDateOfBirth() != null &&
+                updatedEmployee.getJoinDate().isBefore(
+                        updatedEmployee.getDateOfBirth()
+                )) {
+
+            throw new RuntimeException(
+                    "Join date cannot be before date of birth"
             );
         }
 
