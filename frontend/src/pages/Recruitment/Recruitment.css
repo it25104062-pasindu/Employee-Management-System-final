@@ -1,0 +1,525 @@
+/* =========================
+   RECRUITMENT PAGE
+========================= */
+
+.recruitment-page {
+    width: 100%;
+    padding: 32px;
+    background: #f5f7fb;
+    min-height: 100vh;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.recruitment-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    margin-bottom: 28px;
+}
+
+.recruitment-header h1 {
+    margin: 0 0 6px;
+    font-size: 30px;
+    line-height: 1.2;
+    font-weight: 700;
+    color: #1f2937;
+}
+
+.recruitment-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+/* =========================
+   PRIMARY BUTTON
+========================= */
+
+.recruitment-primary-btn {
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    background: #2563eb;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s;
+    white-space: nowrap;
+}
+
+.recruitment-primary-btn:hover {
+    background: #1d4ed8;
+}
+
+/* =========================
+   BOTH CARD SYSTEMS
+   Older sections use:
+   recruitment-card
+   New sections use:
+   recruitment-section
+========================= */
+
+.recruitment-card,
+.recruitment-section {
+    width: 100%;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    margin-bottom: 24px;
+    overflow: hidden;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+}
+
+/* =========================
+   CARD HEADERS
+========================= */
+
+.recruitment-card-header,
+.section-header {
+    padding: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    border-bottom: 1px solid #e5e7eb;
+    background: #ffffff;
+}
+
+.recruitment-card-header h2,
+.section-header h2 {
+    margin: 0 0 5px;
+    font-size: 20px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: #111827;
+}
+
+.recruitment-card-header p,
+.section-header p {
+    margin: 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+
+/* =========================
+   SEARCH + FILTER
+   Support both class names
+========================= */
+
+.recruitment-filters,
+.section-actions {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.recruitment-filters input,
+.recruitment-filters select,
+.section-actions input,
+.section-actions select {
+    height: 40px;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    padding: 0 12px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    outline: none;
+}
+
+.recruitment-filters input,
+.section-actions input {
+    width: 220px;
+}
+
+.recruitment-filters select,
+.section-actions select {
+    min-width: 130px;
+}
+
+.recruitment-filters input:focus,
+.recruitment-filters select:focus,
+.section-actions input:focus,
+.section-actions select:focus {
+    border-color: #2563eb;
+}
+
+/* =========================
+   SUMMARY CARDS
+   Support both systems
+========================= */
+
+.recruitment-summary,
+.summary-cards {
+    display: grid;
+    gap: 14px;
+    margin-bottom: 0;
+    background: #ffffff;
+}
+
+.recruitment-summary {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.summary-cards {
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    padding: 20px 22px;
+}
+
+.recruitment-summary-card,
+.summary-card {
+    min-width: 0;
+    background: #f9fafb;
+    border: 1px solid #e5e7eb;
+    border-radius: 10px;
+    padding: 16px;
+}
+
+.recruitment-summary-card span,
+.summary-card span {
+    display: block;
+    color: #6b7280;
+    font-size: 13px;
+    margin-bottom: 7px;
+}
+
+.recruitment-summary-card strong,
+.summary-card strong {
+    display: block;
+    color: #111827;
+    font-size: 24px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+/* =========================
+   TABLE
+   Support both systems
+========================= */
+
+.table-container {
+    width: 100%;
+    overflow-x: auto;
+    border-top: 1px solid #f0f0f0;
+}
+
+.recruitment-table,
+.data-table {
+    width: 100%;
+    min-width: 900px;
+    border-collapse: collapse;
+    background: #ffffff;
+}
+
+.recruitment-table th,
+.data-table th {
+    background: #f9fafb;
+    color: #4b5563;
+    font-size: 12px;
+    font-weight: 700;
+    text-align: left;
+    padding: 14px 18px;
+    border-bottom: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+.recruitment-table td,
+.data-table td {
+    padding: 15px 18px;
+    color: #374151;
+    font-size: 14px;
+    border-bottom: 1px solid #f0f0f0;
+    white-space: nowrap;
+    vertical-align: middle;
+}
+
+.recruitment-table tbody tr:hover,
+.data-table tbody tr:hover {
+    background: #fafafa;
+}
+
+.recruitment-table tbody tr:last-child td,
+.data-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.recruitment-table td[colspan],
+.data-table td[colspan] {
+    text-align: center;
+    color: #6b7280;
+    padding: 28px 18px;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.recruitment-status {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.recruitment-status.open {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.recruitment-status.closed {
+    background: #fee2e2;
+    color: #991b1b;
+}
+
+/* =========================
+   ACTION BUTTONS
+========================= */
+
+.recruitment-actions,
+.table-actions {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.recruitment-edit-btn,
+.recruitment-delete-btn {
+    border: none;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.recruitment-edit-btn {
+    background: #eff6ff;
+    color: #1d4ed8;
+}
+
+.recruitment-edit-btn:hover {
+    background: #dbeafe;
+}
+
+.recruitment-delete-btn {
+    background: #fef2f2;
+    color: #dc2626;
+}
+
+.recruitment-delete-btn:hover {
+    background: #fee2e2;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.recruitment-modal {
+    width: 600px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow-y: auto;
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+}
+
+.recruitment-modal h2 {
+    margin: 0 0 6px;
+    color: #111827;
+    font-size: 22px;
+    line-height: 1.3;
+}
+
+.recruitment-modal .modal-description {
+    margin: 0 0 20px;
+    color: #6b7280;
+    font-size: 14px;
+}
+
+.recruitment-modal form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.recruitment-modal label {
+    display: flex;
+    flex-direction: column;
+    gap: 7px;
+    color: #374151;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.recruitment-modal input,
+.recruitment-modal select,
+.recruitment-modal textarea {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    padding: 10px 12px;
+    font-family: inherit;
+    font-size: 14px;
+    color: #374151;
+    background: #ffffff;
+    outline: none;
+}
+
+.recruitment-modal input,
+.recruitment-modal select {
+    height: 42px;
+}
+
+.recruitment-modal textarea {
+    resize: vertical;
+    min-height: 90px;
+}
+
+.recruitment-modal input:focus,
+.recruitment-modal select:focus,
+.recruitment-modal textarea:focus {
+    border-color: #2563eb;
+}
+
+.recruitment-modal .secondary-btn {
+    width: 100%;
+    border: 1px solid #d1d5db;
+    border-radius: 7px;
+    padding: 10px;
+    background: #ffffff;
+    color: #374151;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.recruitment-modal .secondary-btn:hover {
+    background: #f9fafb;
+}
+
+/* =========================
+   MODAL OVERLAY
+========================= */
+
+.modal-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    background: rgba(15, 23, 42, 0.55);
+}
+
+.modal-content {
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 1200px) {
+
+    .recruitment-summary,
+    .summary-cards {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+
+    .recruitment-card-header,
+    .section-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .recruitment-filters,
+    .section-actions {
+        width: 100%;
+        justify-content: flex-start;
+    }
+}
+
+@media (max-width: 900px) {
+    .recruitment-page {
+        padding: 24px;
+    }
+
+    .recruitment-summary,
+    .summary-cards {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .recruitment-filters,
+    .section-actions {
+        width: 100%;
+    }
+
+    .recruitment-filters input,
+    .section-actions input {
+        flex: 1;
+        min-width: 180px;
+    }
+}
+
+@media (max-width: 600px) {
+    .recruitment-page {
+        padding: 16px;
+    }
+
+    .recruitment-header {
+        align-items: flex-start;
+        flex-direction: column;
+    }
+
+    .recruitment-primary-btn {
+        width: 100%;
+    }
+
+    .recruitment-filters,
+    .section-actions {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .recruitment-filters input,
+    .recruitment-filters select,
+    .section-actions input,
+    .section-actions select,
+    .section-actions .recruitment-primary-btn {
+        width: 100%;
+    }
+
+    .recruitment-summary,
+    .summary-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .summary-cards {
+        padding: 16px;
+    }
+
+    .recruitment-card-header,
+    .section-header {
+        padding: 18px;
+    }
+
+    .recruitment-modal {
+        padding: 20px;
+        max-width: 100%;
+    }
+}

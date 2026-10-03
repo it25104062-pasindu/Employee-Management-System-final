@@ -1,0 +1,631 @@
+.departments-page {
+    padding: 36px 42px 50px;
+    min-height: calc(100vh - 80px);
+    background: #f5f7fb;
+}
+
+/* =========================
+   PAGE HEADER
+========================= */
+
+.departments-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 28px;
+}
+
+.departments-header h1 {
+    margin: 0;
+    font-size: 34px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.departments-header p {
+    margin-top: 7px;
+    color: #718096;
+    font-size: 15px;
+}
+
+.add-department-btn {
+    border: none;
+    background: #1f4f82;
+    color: white;
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.add-department-btn:hover {
+    background: #173d65;
+    transform: translateY(-1px);
+}
+
+/* =========================
+   SUMMARY CARDS
+========================= */
+
+.department-summary {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-bottom: 26px;
+}
+
+.department-summary-card {
+    background: white;
+    border: 1px solid #e7ebf1;
+    border-radius: 12px;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    box-shadow: 0 2px 8px rgba(20, 35, 55, 0.04);
+}
+
+.summary-icon {
+    width: 46px;
+    height: 46px;
+    border-radius: 10px;
+    background: #edf4fb;
+    color: #1f4f82;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 21px;
+    font-weight: 700;
+}
+
+.department-summary-card span {
+    display: block;
+    color: #718096;
+    font-size: 13px;
+    margin-bottom: 5px;
+}
+
+.department-summary-card strong {
+    display: block;
+    color: #172033;
+    font-size: 24px;
+    font-weight: 700;
+}
+
+/* =========================
+   MAIN SECTION
+========================= */
+
+.department-section {
+    background: white;
+    border: 1px solid #e7ebf1;
+    border-radius: 12px;
+    padding: 24px;
+    box-shadow: 0 2px 8px rgba(20, 35, 55, 0.04);
+}
+
+.department-section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.department-section-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #172033;
+}
+
+.department-section-header p {
+    margin-top: 5px;
+    color: #718096;
+    font-size: 14px;
+}
+
+/* =========================
+   FILTERS
+========================= */
+
+.department-filters {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 20px;
+}
+
+.department-search {
+    width: 320px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    border: 1px solid #dfe5ed;
+    background: #f9fafc;
+    border-radius: 8px;
+    padding: 0 13px;
+}
+
+.department-search span {
+    color: #8a96a8;
+    font-size: 20px;
+}
+
+.department-search input {
+    width: 100%;
+    border: none;
+    outline: none;
+    background: transparent;
+    color: #344054;
+    font-size: 14px;
+}
+
+.department-search input::placeholder {
+    color: #98a2b3;
+}
+
+.department-status-filter {
+    height: 42px;
+    min-width: 145px;
+    padding: 0 12px;
+    border: 1px solid #dfe5ed;
+    border-radius: 8px;
+    background: #f9fafc;
+    color: #344054;
+    font-size: 14px;
+    outline: none;
+    cursor: pointer;
+}
+
+/* =========================
+   TABLE
+========================= */
+
+.department-table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+.department-table {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 760px;
+}
+
+.department-table thead {
+    background: #f8fafc;
+}
+
+.department-table th {
+    padding: 14px 16px;
+    text-align: left;
+    color: #667085;
+    font-size: 12px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+    border-bottom: 1px solid #e7ebf1;
+}
+
+.department-table td {
+    padding: 16px;
+    border-bottom: 1px solid #edf0f4;
+    color: #475467;
+    font-size: 14px;
+    vertical-align: middle;
+}
+
+.department-table tbody tr:hover {
+    background: #fafcff;
+}
+
+/* =========================
+   TABLE CONTENT
+========================= */
+
+.department-id {
+    color: #7b8798;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.department-name-cell {
+    display: flex;
+    align-items: center;
+    gap: 11px;
+}
+
+.department-avatar {
+    width: 38px;
+    height: 38px;
+    border-radius: 9px;
+    background: #edf4fb;
+    color: #1f4f82;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    font-size: 14px;
+}
+
+.department-name-cell strong {
+    color: #172033;
+    font-weight: 600;
+}
+
+.department-description {
+    color: #667085;
+}
+
+/* =========================
+   STATUS
+========================= */
+
+.department-status {
+    display: inline-flex;
+    align-items: center;
+    padding: 5px 11px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.department-status.active {
+    background: #e9f8ef;
+    color: #21864b;
+}
+
+.department-status.inactive {
+    background: #fef0f0;
+    color: #c53030;
+}
+
+/* =========================
+   ACTIONS
+========================= */
+
+.department-actions {
+    display: flex;
+    gap: 8px;
+}
+
+.edit-btn,
+.delete-btn {
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 7px 12px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-btn {
+    border-color: #d6e4f3;
+    background: #f3f8fd;
+    color: #1f4f82;
+}
+
+.edit-btn:hover {
+    background: #e5f0fa;
+}
+
+.delete-btn {
+    border-color: #f3d1d1;
+    background: #fff7f7;
+    color: #c53030;
+}
+
+.delete-btn:hover {
+    background: #fdeaea;
+}
+
+/* =========================
+   EMPTY / LOADING / ERROR
+========================= */
+
+.department-empty {
+    text-align: center;
+    padding: 55px 20px;
+    border: 1px dashed #d9e0e8;
+    border-radius: 10px;
+    background: #fafbfd;
+}
+
+.empty-icon {
+    font-size: 34px;
+    margin-bottom: 10px;
+}
+
+.department-empty h3 {
+    margin: 0;
+    color: #344054;
+    font-size: 17px;
+}
+
+.department-empty p {
+    margin-top: 7px;
+    color: #98a2b3;
+    font-size: 13px;
+}
+
+.department-message {
+    padding: 35px;
+    text-align: center;
+    color: #667085;
+}
+
+.department-error {
+    padding: 14px 16px;
+    border-radius: 8px;
+    background: #fff1f1;
+    color: #c53030;
+    border: 1px solid #f4cccc;
+}
+
+/* =========================
+   MODAL
+========================= */
+
+.department-modal-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.52);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1000;
+    padding: 20px;
+}
+
+.department-modal {
+    width: 520px;
+    max-width: 100%;
+    background: white;
+    border-radius: 14px;
+    box-shadow: 0 20px 50px rgba(15, 23, 42, 0.2);
+    overflow: hidden;
+}
+
+.department-modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding: 22px 24px;
+    border-bottom: 1px solid #edf0f4;
+}
+
+.department-modal-header h2 {
+    margin: 0;
+    color: #172033;
+    font-size: 20px;
+    font-weight: 700;
+}
+
+.department-modal-header p {
+    margin-top: 5px;
+    color: #8a96a8;
+    font-size: 13px;
+}
+
+.modal-close-btn {
+    border: none;
+    background: transparent;
+    color: #667085;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.department-modal form {
+    padding: 24px;
+}
+
+.department-form-group {
+    margin-bottom: 18px;
+}
+
+.department-form-group label {
+    display: block;
+    margin-bottom: 7px;
+    color: #344054;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+.department-form-group input,
+.department-form-group textarea,
+.department-form-group select {
+    width: 100%;
+    border: 1px solid #dfe5ed;
+    border-radius: 8px;
+    padding: 11px 12px;
+    background: #fff;
+    color: #344054;
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    transition: 0.2s ease;
+}
+
+.department-form-group textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.department-form-group input:focus,
+.department-form-group textarea:focus,
+.department-form-group select:focus {
+    border-color: #7ea6cf;
+    box-shadow: 0 0 0 3px rgba(31, 79, 130, 0.08);
+}
+
+.department-modal-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    padding-top: 8px;
+}
+
+.cancel-btn,
+.save-department-btn {
+    padding: 10px 17px;
+    border-radius: 7px;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.cancel-btn {
+    border: 1px solid #dfe5ed;
+    background: white;
+    color: #667085;
+}
+
+.cancel-btn:hover {
+    background: #f8fafc;
+}
+
+.save-department-btn {
+    border: none;
+    background: #1f4f82;
+    color: white;
+}
+
+.save-department-btn:hover {
+    background: #173d65;
+}
+
+/* =========================
+   RESPONSIVE
+========================= */
+
+@media (max-width: 900px) {
+
+    .department-summary {
+        grid-template-columns: 1fr;
+    }
+
+    .departments-header {
+        align-items: flex-start;
+        gap: 20px;
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .departments-page {
+        padding: 24px 18px 40px;
+    }
+
+    .departments-header {
+        flex-direction: column;
+    }
+
+    .add-department-btn {
+        width: 100%;
+    }
+
+    .department-filters {
+        flex-direction: column;
+    }
+
+    .department-search {
+        width: 100%;
+    }
+
+    .department-status-filter {
+        width: 100%;
+    }
+
+    .department-section {
+        padding: 16px;
+    }
+
+}
+
+/* =========================
+   ROLE MANAGEMENT
+========================= */
+
+.role-section {
+    margin-top: 26px;
+}
+
+.role-summary {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.role-section .department-section-header {
+    margin-bottom: 0;
+}
+
+.role-section .add-department-btn:disabled {
+    opacity: 0.55;
+    cursor: not-allowed;
+    transform: none;
+}
+
+.role-section .department-table th:last-child,
+.role-section .department-table td:last-child {
+    white-space: nowrap;
+}
+
+.role-section .department-table td:nth-child(3) {
+    min-width: 150px;
+}
+
+.role-section .department-table td:nth-child(4) {
+    min-width: 220px;
+}
+
+/* Role avatar */
+
+.role-section .department-avatar {
+    background: #f0ecfb;
+    color: #6b4bb3;
+}
+
+/* Role empty state */
+
+.role-section .empty-icon {
+    color: #6b4bb3;
+}
+
+/* Role buttons */
+
+.role-section .edit-btn:hover {
+    transform: translateY(-1px);
+}
+
+.role-section .delete-btn:hover {
+    transform: translateY(-1px);
+}
+
+/* Role modal */
+
+.role-section+.department-modal-overlay {
+    z-index: 1100;
+}
+
+/* Responsive Role table */
+
+@media (max-width: 900px) {
+
+    .role-section .department-summary {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+}
+
+@media (max-width: 650px) {
+
+    .role-section .department-summary {
+        grid-template-columns: 1fr;
+    }
+
+}
