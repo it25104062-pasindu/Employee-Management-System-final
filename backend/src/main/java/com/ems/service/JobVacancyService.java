@@ -59,10 +59,34 @@ public class JobVacancyService {
     public JobVacancy createVacancy(
             JobVacancy vacancy) {
 
+        validateVacancy(vacancy);
+
+        vacancy.setJobTitle(
+                vacancy.getJobTitle().trim()
+        );
+
+        if (vacancy.getDepartment() != null) {
+            vacancy.setDepartment(
+                    vacancy.getDepartment().trim()
+            );
+        }
+
+        if (vacancy.getPosition() != null) {
+            vacancy.setPosition(
+                    vacancy.getPosition().trim()
+            );
+        }
+
         if (vacancy.getStatus() == null ||
                 vacancy.getStatus().isBlank()) {
 
             vacancy.setStatus("Open");
+
+        } else {
+
+            vacancy.setStatus(
+                    vacancy.getStatus().trim()
+            );
         }
 
         return jobVacancyRepository.save(vacancy);
@@ -75,14 +99,23 @@ public class JobVacancyService {
 
         JobVacancy existingVacancy = getVacancyById(id);
 
+        validateVacancy(updatedVacancy);
+
         existingVacancy.setJobTitle(
-                updatedVacancy.getJobTitle());
+                updatedVacancy.getJobTitle().trim()
+        );
 
         existingVacancy.setDepartment(
-                updatedVacancy.getDepartment());
+                updatedVacancy.getDepartment() != null
+                        ? updatedVacancy.getDepartment().trim()
+                        : null
+        );
 
         existingVacancy.setPosition(
-                updatedVacancy.getPosition());
+                updatedVacancy.getPosition() != null
+                        ? updatedVacancy.getPosition().trim()
+                        : null
+        );
 
         existingVacancy.setDescription(
                 updatedVacancy.getDescription());
@@ -96,11 +129,50 @@ public class JobVacancyService {
         existingVacancy.setClosingDate(
                 updatedVacancy.getClosingDate());
 
-        existingVacancy.setStatus(
-                updatedVacancy.getStatus());
+        if (updatedVacancy.getStatus() == null ||
+                updatedVacancy.getStatus().isBlank()) {
+
+            existingVacancy.setStatus("Open");
+
+        } else {
+
+            existingVacancy.setStatus(
+                    updatedVacancy.getStatus().trim()
+            );
+        }
 
         return jobVacancyRepository.save(
                 existingVacancy);
+    }
+
+    // Vacancy validation
+    private void validateVacancy(
+            JobVacancy vacancy) {
+
+        if (vacancy == null) {
+            throw new RuntimeException(
+                    "Job vacancy data is required"
+            );
+        }
+
+        if (vacancy.getJobTitle() == null ||
+                vacancy.getJobTitle().isBlank()) {
+
+            throw new RuntimeException(
+                    "Job title is required"
+            );
+        }
+
+        if (vacancy.getOpeningDate() != null &&
+                vacancy.getClosingDate() != null &&
+                vacancy.getClosingDate().isBefore(
+                        vacancy.getOpeningDate()
+                )) {
+
+            throw new RuntimeException(
+                    "Closing date cannot be before opening date"
+            );
+        }
     }
 
     // Delete vacancy
