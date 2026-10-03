@@ -46,6 +46,8 @@ public class PayrollService {
     // Create payroll
     public Payroll createPayroll(Payroll payroll) {
 
+        validatePayroll(payroll);
+
         BigDecimal basicSalary = payroll.getBasicSalary() != null
                 ? payroll.getBasicSalary()
                 : BigDecimal.ZERO;
@@ -63,6 +65,13 @@ public class PayrollService {
                 .add(allowances)
                 .subtract(deductions);
 
+        // Prevent negative net salary
+        if (netSalary.compareTo(BigDecimal.ZERO) < 0) {
+            throw new RuntimeException(
+                    "Net salary cannot be negative"
+            );
+        }
+
         payroll.setBasicSalary(basicSalary);
         payroll.setAllowances(allowances);
         payroll.setDeductions(deductions);
@@ -72,6 +81,10 @@ public class PayrollService {
                 payroll.getStatus().isBlank()) {
 
             payroll.setStatus("Generated");
+        } else {
+            payroll.setStatus(
+                    payroll.getStatus().trim()
+            );
         }
 
         return payrollRepository.save(payroll);
@@ -82,13 +95,9 @@ public class PayrollService {
             Long id,
             Payroll updatedPayroll) {
 
-        Payroll existingPayroll = getPayrollById(id);
+        getPayrollById(id);
 
-        existingPayroll.setEmployee(
-                updatedPayroll.getEmployee());
-
-        existingPayroll.setPayrollMonth(
-                updatedPayroll.getPayrollMonth());
+        validatePayroll(updatedPayroll);
 
         BigDecimal basicSalary = updatedPayroll.getBasicSalary() != null
                 ? updatedPayroll.getBasicSalary()
@@ -106,15 +115,90 @@ public class PayrollService {
                 .add(allowances)
                 .subtract(deductions);
 
+        // Prevent negative net salary
+        if (netSalary.compareTo(BigDecimal.ZERO) < 0) {
+            throw new RuntimeException(
+                    "Net salary cannot be negative"
+            );
+        }
+
+        Payroll existingPayroll = getPayrollById(id);
+
+        existingPayroll.setEmployee(
+                updatedPayroll.getEmployee());
+
+        existingPayroll.setPayrollMonth(
+                updatedPayroll.getPayrollMonth().trim());
+
         existingPayroll.setBasicSalary(basicSalary);
         existingPayroll.setAllowances(allowances);
         existingPayroll.setDeductions(deductions);
         existingPayroll.setNetSalary(netSalary);
 
-        existingPayroll.setStatus(
-                updatedPayroll.getStatus());
+        if (updatedPayroll.getStatus() == null ||
+                updatedPayroll.getStatus().isBlank()) {
+
+            existingPayroll.setStatus("Generated");
+        } else {
+            existingPayroll.setStatus(
+                    updatedPayroll.getStatus().trim()
+            );
+        }
 
         return payrollRepository.save(existingPayroll);
+    }
+
+    // Validate payroll input
+    private void validatePayroll(Payroll payroll) {
+
+        if (payroll == null) {
+            throw new RuntimeException(
+                    "Payroll data is required"
+            );
+        }
+
+        if (payroll.getEmployee() == null) {
+            throw new RuntimeException(
+                    "Employee is required"
+            );
+        }
+
+        if (payroll.getPayrollMonth() == null ||
+                payroll.getPayrollMonth().isBlank()) {
+
+            throw new RuntimeException(
+                    "Payroll month is required"
+            );
+        }
+
+        validateNonNegative(
+                payroll.getBasicSalary(),
+                "Basic salary"
+        );
+
+        validateNonNegative(
+                payroll.getAllowances(),
+                "Allowances"
+        );
+
+        validateNonNegative(
+                payroll.getDeductions(),
+                "Deductions"
+        );
+    }
+
+    // Reject negative monetary values
+    private void validateNonNegative(
+            BigDecimal value,
+            String fieldName) {
+
+        if (value != null &&
+                value.compareTo(BigDecimal.ZERO) < 0) {
+
+            throw new RuntimeException(
+                    fieldName + " cannot be negative"
+            );
+        }
     }
 
     // Delete payroll
