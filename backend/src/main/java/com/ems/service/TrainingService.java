@@ -38,6 +38,70 @@ public class TrainingService {
 
     public Training createTraining(Training training) {
 
+        validateTraining(training);
+
+        return trainingRepository.save(training);
+    }
+
+    public Training updateTraining(
+            Long id,
+            Training updatedTraining) {
+
+        Training existingTraining = getTrainingById(id);
+
+        validateTraining(updatedTraining);
+
+        existingTraining.setTrainingTitle(
+                updatedTraining.getTrainingTitle()
+        );
+
+        existingTraining.setEmployee(
+                updatedTraining.getEmployee()
+        );
+
+        existingTraining.setTrainingProvider(
+                updatedTraining.getTrainingProvider()
+        );
+
+        existingTraining.setStartDate(
+                updatedTraining.getStartDate()
+        );
+
+        existingTraining.setEndDate(
+                updatedTraining.getEndDate()
+        );
+
+        existingTraining.setStatus(
+                updatedTraining.getStatus()
+        );
+
+        existingTraining.setDescription(
+                updatedTraining.getDescription()
+        );
+
+        return trainingRepository.save(existingTraining);
+    }
+
+    public void deleteTraining(Long id) {
+
+        if (!trainingRepository.existsById(id)) {
+
+            throw new RuntimeException(
+                    "Training not found with id: " + id
+            );
+        }
+
+        trainingRepository.deleteById(id);
+    }
+
+    private void validateTraining(Training training) {
+
+        if (training == null) {
+            throw new RuntimeException(
+                    "Training data is required"
+            );
+        }
+
         if (training.getTrainingTitle() == null ||
                 training.getTrainingTitle().isBlank()) {
 
@@ -70,84 +134,24 @@ public class TrainingService {
             );
         }
 
-        return trainingRepository.save(training);
-    }
+        training.setTrainingTitle(
+                training.getTrainingTitle().trim()
+        );
 
-    public Training updateTraining(
-            Long id,
-            Training updatedTraining) {
+        training.setStatus(
+                training.getStatus().trim()
+        );
 
-        Training existingTraining =
-                getTrainingById(id);
-
-        if (updatedTraining.getTrainingTitle() == null ||
-                updatedTraining.getTrainingTitle().isBlank()) {
-
-            throw new RuntimeException(
-                    "Training title is required"
+        if (training.getTrainingProvider() != null) {
+            training.setTrainingProvider(
+                    training.getTrainingProvider().trim()
             );
         }
 
-        if (updatedTraining.getEmployee() == null ||
-                updatedTraining.getEmployee().getId() == null) {
-
-            throw new RuntimeException(
-                    "Employee is required"
+        if (training.getDescription() != null) {
+            training.setDescription(
+                    training.getDescription().trim()
             );
         }
-
-        if (updatedTraining.getStartDate() != null &&
-                updatedTraining.getEndDate() != null &&
-                updatedTraining.getEndDate().isBefore(
-                        updatedTraining.getStartDate())) {
-
-            throw new RuntimeException(
-                    "End date cannot be before start date"
-            );
-        }
-
-        existingTraining.setTrainingTitle(
-                updatedTraining.getTrainingTitle()
-        );
-
-        existingTraining.setEmployee(
-                updatedTraining.getEmployee()
-        );
-
-        existingTraining.setTrainingProvider(
-                updatedTraining.getTrainingProvider()
-        );
-
-        existingTraining.setStartDate(
-                updatedTraining.getStartDate()
-        );
-
-        existingTraining.setEndDate(
-                updatedTraining.getEndDate()
-        );
-
-        existingTraining.setStatus(
-                updatedTraining.getStatus()
-        );
-
-        existingTraining.setDescription(
-                updatedTraining.getDescription()
-        );
-
-        return trainingRepository.save(
-                existingTraining
-        );
-    }
-
-    public void deleteTraining(Long id) {
-
-        if (!trainingRepository.existsById(id)) {
-
-            throw new RuntimeException(
-                    "Training not found with id: " + id
-            );
-        }
-
-        trainingRepository.deleteById(id);
     }
 }
