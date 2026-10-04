@@ -1,39 +1,45 @@
+[employee-records.md](https://github.com/user-attachments/files/33028534/employee-records.md)
 # Employee Records & Profile Management
 
-## Module Overview
+## Member
+- **Name:** Umar M.F.M.
+- **Student ID:** IT25101112
+- **Major Function:** Employee Records & Profile Management
 
-The Employee Records module manages employee information in the Employee Management System.
+## Responsibility
+Responsible for the employee master-record module and its integration with department and role information.
 
-## Main Features
+## Main Work
+- Implemented employee Create, Read, Update and Delete (CRUD) operations.
+- Added employee profile fields such as employee code, name, email, phone, department, position, date of birth, join date, address and status.
+- Connected employee records with Department and Role entities.
+- Added employee search support.
+- Added validation for required employee fields and duplicate employee records.
+- Supported integration of employee information with other modules such as attendance, leave, payroll and training.
 
-- Add new employees
-- Update employee information
-- Delete employee records
-- Search employees
-- View employee details
-- Assign departments
-- Assign roles
-- Manage employee status
+## Key Backend Components
+- `Employee` entity
+- `EmployeeRepository`
+- `EmployeeService`
+- `EmployeeController`
 
-## Employee Information
+## Frontend Work
+- Employee listing screen
+- Add employee form
+- Edit employee form
+- Delete action
+- Department and Role selection
+- Search/filter support
+- Validation messages
 
-The module stores important employee details such as:
+## Main Challenge
+Managing the employee module within the project timeline and becoming familiar with the shared Git/GitHub workflow.
 
-- Employee Code
-- Employee Name
-- Email
-- Phone Number
-- Department
-- Position
-- Date of Birth
-- Join Date
-- Address
-- Employment Status
+## How It Was Addressed
+The work was divided into smaller tasks, core CRUD functionality was prioritized first, and feature-branch based development was used for collaboration and integration.
 
-## Validation
+## Key Learning
+CRUD module design, relational data modelling, validation, REST API integration and collaborative version control.
 
-The system validates required employee information before saving records and prevents invalid or incomplete employee data from being submitted.
-
-## Technology
-
-The module uses React for the frontend and Spring Boot with MySQL for backend data management.
+## Collaboration / Git Note
+This document records the member's assigned technical responsibility and module scope. Git commit history should be used separately as evidence of repository activity.
