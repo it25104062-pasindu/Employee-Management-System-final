@@ -1,5 +1,7 @@
 package com.ems.service;
 
+import com.ems.config.SystemConfig;
+
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
 
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Service;
 public class EmailService {
 
     private final JavaMailSender mailSender;
+    private final SystemConfig systemConfig = SystemConfig.getInstance();
 
     public EmailService(JavaMailSender mailSender) {
         this.mailSender = mailSender;
@@ -37,7 +40,14 @@ public class EmailService {
 
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(message);
+
+            String finalMessage =
+                    message
+                            + "\n\n"
+                            + systemConfig.getApplicationName()
+                            + " v" + systemConfig.getVersion();
+
+            helper.setText(finalMessage);
 
             mailSender.send(mimeMessage);
 
@@ -70,7 +80,14 @@ public class EmailService {
 
             helper.setTo(to);
             helper.setSubject(subject);
-            helper.setText(message);
+
+            String finalMessage =
+                    message
+                            + "\n\n"
+                            + systemConfig.getApplicationName()
+                            + " v" + systemConfig.getVersion();
+
+            helper.setText(finalMessage);
 
             helper.addAttachment(
                     attachmentFileName,
